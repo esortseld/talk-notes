@@ -263,6 +263,15 @@ h1 {
   box-shadow: 0 0 0 3px rgba(95, 114, 82, 0.18), var(--shadow-card);
 }
 
+.live-card {
+  scroll-margin-top: 24px;
+}
+
+.live-card:target {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(95, 114, 82, 0.18), var(--shadow-card);
+}
+
 .note-card__meta,
 .song-card__meta {
   display: flex;
@@ -292,6 +301,21 @@ h1 {
   color: var(--color-muted);
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+
+.song-live-links {
+  margin: 14px 0 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.song-live-links span {
+  display: block;
+}
+
+.song-live-links a {
+  font-weight: 700;
 }
 
 .tag-list {
