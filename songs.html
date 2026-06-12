@@ -6,7 +6,7 @@
   <title>Songs | Talk Notes</title>
   <meta name="description" content="曲名・アーティストから探す楽曲メモ。タイトル、分秒、短いメモ、歌詞リンクを管理します。">
   <link rel="stylesheet" href="assets/style.css">
-  <script src="data/songs.js?v=20260612-03" defer></script>
+  <script src="data/songs.js?v=20260612-04" defer></script>
   <script defer>
     document.addEventListener("DOMContentLoaded", () => {
       const bandFilters = ["すべて", "林檎庵", "sweet pastime", "カンガルーポケット", "その他"];
@@ -36,6 +36,10 @@
         return String(value ?? "").toLowerCase().trim();
       }
 
+      function compareSongs(a, b) {
+        return String(a.titleKana || a.title).localeCompare(String(b.titleKana || b.title), "ja");
+      }
+
       function renderFilterButtons(target, options, activeValue, dataName) {
         target.innerHTML = options.map((option) => {
           const isActive = activeValue === option;
@@ -54,6 +58,7 @@
         const query = normalize(state.query);
         const searchText = normalize([
           song.title,
+          song.titleKana,
           song.artist,
           song.memo,
           song.duration,
@@ -71,10 +76,10 @@
         const memo = song.memo || "メモ未設定";
         const lyricsLink = song.lyricsUrl
           ? `<a class="external-link" href="${escapeHtml(song.lyricsUrl)}" target="_blank" rel="noopener">歌詞リンク</a>`
-          : `<span class="pending-link">歌詞リンク未設定</span>`;
+          : "";
 
         return `
-          <article class="song-card song-card--simple">
+          <article id="song-${escapeHtml(song.id)}" class="song-card song-card--simple">
             <div class="song-card__meta">
               <span>${escapeHtml(bands)}</span>
               <span class="status-pill">${escapeHtml(song.status || "未設定")}</span>
@@ -94,7 +99,7 @@
       }
 
       function renderSongs() {
-        const filteredSongs = songs.filter(matchesSong);
+        const filteredSongs = songs.filter(matchesSong).slice().sort(compareSongs);
         resultCount.textContent = `${filteredSongs.length}曲`;
 
         if (filteredSongs.length === 0) {
