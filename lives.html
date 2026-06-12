@@ -6,7 +6,7 @@
   <title>Live History | Talk Notes</title>
   <meta name="description" content="過去ライブ実績とセットリストをカードで整理するページです。">
   <link rel="stylesheet" href="assets/style.css">
-  <script src="data/lives.js?v=20260612-03" defer></script>
+  <script src="data/lives.js?v=20260612-05" defer></script>
   <style>
     .lives-grid {
       display: grid;
@@ -126,7 +126,7 @@
       function createLiveCard(live) {
         const setlist = (live.setlist || []).map(createSetlistItem).join("");
         return `
-          <article class="live-card">
+          <article id="live-${escapeHtml(live.id)}" class="live-card">
             <div class="live-card__meta">
               <time datetime="${escapeHtml(live.date)}">${escapeHtml(formatDate(live.date))}</time>
               <span>${escapeHtml(live.band)}</span>
