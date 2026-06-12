@@ -1,5 +1,21 @@
 const lives = [
   {
+    id: "2026-03-22-brushup",
+    date: "2026-03-22",
+    venue: "Brush up",
+    band: "sweet pastime",
+    event: "Brushup Live",
+    setlist: [
+      { no: "1", title: "時間の国のアリス", artist: "松田聖子" },
+      { no: "2", title: "白い炎", artist: "斉藤由貴" },
+      { no: "3", title: "情熱", artist: "斉藤由貴" },
+      { no: "4", title: "C-Girl", artist: "浅香唯" },
+      { no: "5", title: "悲しみモニュメント", artist: "南野陽子" },
+      { no: "6", title: "スマイル・フォー・ミー", artist: "河合奈保子" },
+      { no: "7", title: "うしろゆびさされ組", artist: "うしろゆびさされ組" }
+    ]
+  },
+  {
     id: "2026-04-18-piacere",
     date: "2026-04-18",
     venue: "Piacere",
