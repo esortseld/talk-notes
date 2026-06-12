@@ -1,69 +1,57 @@
 # Talk Notes
 
-雑談から残す、あとで読むメモ。
+Talk Notesは、日々の会話、調べもの、制作ログ、楽曲メモを、あとで使える形に整理して残す個人用ノートです。
 
-このリポジトリは、ChatGPTとの会話の中で出てきた疑問、調べもの、考えたことのうち、後から見返したいものだけを整理して残すための静的サイトです。
+雑談や疑問を短いメモとして残しつつ、まずは「Songs / 楽曲メモ」を中心に、曲ごとの基本情報、歌唱メモ、解釈メモ、練習状況、外部歌詞リンクを整理します。
 
-## 公開方法
+## Songs / 楽曲メモ
 
-GitHub Pagesで公開する想定です。
+`songs.html` では、曲名、アーティスト、タグで検索できます。
 
-Pages設定:
+バンドまたは用途、進捗でも絞り込みできます。
 
-- Source: Deploy from a branch
-- Branch: main
-- Folder: /root
+楽曲メモでは歌詞本文をサイト内に直接掲載しません。歌詞確認は、JOYSOUNDなどの正規外部歌詞ページへのリンクで扱います。
 
-公開URL:
+## 新しい楽曲メモを追加する手順
 
-```text
-https://esortseld.github.io/talk-notes/
-```
+1. `notes/songs/` にHTMLを追加する
+2. `data/songs.js` に曲データを追加する
+3. `lyricsUrl` にJOYSOUND等の正規ページURLを入れる。未確認なら空欄にする
+4. `songs.html` で表示確認する
 
-## ファイル構成
-
-```text
-talk-notes/
-├─ index.html
-├─ assets/
-│  └─ style.css
-├─ data/
-│  └─ notes.js
-└─ notes/
-   └─ sample.html
-```
-
-## 新しい記事を追加する手順
-
-1. `notes/` に記事HTMLを追加する
-2. `data/notes.js` に記事情報を追加する
-3. `index.html` で表示を確認する
-
-## 記事データの形式
+`data/songs.js` の形式:
 
 ```js
-const notes = [
+const songs = [
   {
-    title: "記事タイトル",
-    date: "2026-06-12",
-    category: "音楽",
-    tags: ["歌詞解釈", "80年代"],
-    summary: "3行程度の要約。",
-    url: "notes/article-file-name.html"
+    title: "プラスティック・ラブ",
+    artist: "竹内まりや",
+    lyricist: "",
+    composer: "",
+    year: "1984",
+    originalKey: "",
+    myKey: "",
+    bands: ["sweet pastime"],
+    status: "解釈メモ",
+    progress: "",
+    tags: ["80年代", "シティポップ", "歌詞解釈", "都市生活"],
+    summary: "都市的な恋愛観と消費イメージを含む楽曲。主人公像の解釈メモ。",
+    lyricsUrl: "",
+    memoUrl: "notes/songs/sample-song.html"
   }
 ];
 ```
 
-## 運用方針
+## 新しい雑多メモを追加する手順
 
-ChatGPTとの会話から「これをTalk Notesに追加」と指定したものだけを記事化して追加します。
+1. `notes/` にHTMLを追加する
+2. `data/notes.js` に記事情報を追加する
+3. `index.html` で表示確認する
 
-会話ログを丸ごと保存するのではなく、後から読み返せるように次の形へ整理します。
+## GitHub Pages設定
 
-1. この話題は何か
-2. 背景
-3. 構造
-4. 分類・パターン
-5. 判断材料
-6. 結論
-7. 関連メモ
+GitHub Pagesでは、次の設定で公開します。
+
+- Source: Deploy from a branch
+- Branch: main
+- Folder: /root
