@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Songs | Talk Notes</title>
   <meta name="description" content="曲名・アーティストから探す楽曲メモ。タイトル、分秒、短いメモ、歌詞リンクを管理します。">
-  <link rel="stylesheet" href="assets/style.css">
-  <script src="data/songs.js?v=20260612-05" defer></script>
-  <script src="data/lives.js?v=20260612-05" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=20260613-01">
+  <script src="data/songs.js?v=20260613-01" defer></script>
+  <script src="data/lives.js?v=20260613-01" defer></script>
   <script defer>
     document.addEventListener("DOMContentLoaded", () => {
       const bandFilters = ["すべて", "林檎庵", "sweet pastime", "カンガルーポケット", "その他"];
@@ -77,11 +77,12 @@
         return bandMatch && statusMatch && (!query || searchText.includes(query));
       }
 
-      function createSongCard(song) {
+      function createSongCard(song, index) {
         const tags = (song.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
         const bands = (song.bands || []).join(" / ") || "未設定";
         const duration = song.duration ? escapeHtml(song.duration) : "分秒未設定";
         const memo = song.memo || "メモ未設定";
+        const collectionNumber = String(index + 1).padStart(3, "0");
         const liveLinks = getLiveLinks(song);
         const liveHistory = liveLinks.length
           ? `<p class="song-live-links"><span>ライブ実績：</span>${liveLinks.join(" / ")}</p>`
@@ -91,13 +92,17 @@
           : "";
 
         return `
-          <article id="song-${escapeHtml(song.id)}" class="song-card song-card--simple">
+          <article id="song-${escapeHtml(song.id)}" class="song-card song-card--simple collection-card">
+            <div class="song-card__image-placeholder" aria-hidden="true">
+              <span>Image</span>
+            </div>
+            <p class="song-card__eyebrow">Collection No. ${collectionNumber}</p>
+            <h2 class="song-card__title">${escapeHtml(song.title)}</h2>
+            <p class="song-card__artist">${escapeHtml(song.artist)}</p>
             <div class="song-card__meta">
               <span>${escapeHtml(bands)}</span>
               <span>${duration}</span>
             </div>
-            <h2 class="song-card__title">${escapeHtml(song.title)}</h2>
-            <p class="song-card__artist">${escapeHtml(song.artist)}</p>
             <p class="song-card__summary">${escapeHtml(memo)}</p>
             ${liveHistory}
             <div class="tag-list" aria-label="タグ">
@@ -151,48 +156,75 @@
     });
   </script>
 </head>
-<body>
-  <header class="site-header">
+<body class="songs-page">
+  <header class="site-header museum-hero">
     <div class="container header-inner">
       <div class="breadcrumb">
         <a class="back-link" href="index.html">Talk Notesへ戻る</a>
         <a class="back-link" href="lives.html">Live Historyへ</a>
       </div>
-      <p class="site-kicker">Songs</p>
+      <p class="site-kicker museum-hero__label">Song Collection</p>
       <h1>Songs</h1>
-      <p class="site-subtitle">曲名・アーティストから探す楽曲メモ</p>
+      <p class="site-subtitle">楽曲展示室</p>
       <p class="site-description">
-        タイトル、アーティスト、分秒、短いメモ、歌詞リンクだけを置く簡易メモです。歌詞本文は掲載しません。
+        歌詞本文は掲載せず、曲ごとの基本情報、歌詞リンク、ライブ実績、短いメモを整理します。
       </p>
     </div>
   </header>
 
   <main class="container songs-panel">
-    <section class="controls" aria-label="楽曲メモの絞り込み">
-      <div class="search-field">
-        <label for="songSearchInput">検索</label>
-        <input id="songSearchInput" type="search" placeholder="曲名・アーティスト・メモ・タグで検索">
+    <section class="museum-section museum-section--search" aria-label="楽曲メモの絞り込み">
+      <div class="museum-section__heading">
+        <p class="museum-section__number">01.</p>
+        <div>
+          <p class="museum-section__label">Search</p>
+          <h2 class="museum-section__title">楽曲を探す</h2>
+        </div>
       </div>
 
-      <div class="filter-group">
-        <div>
-          <p class="control-label">バンド・用途</p>
-          <div id="bandList" class="filter-list" aria-label="バンドまたは用途"></div>
+      <div class="controls museum-search-panel">
+        <div class="search-field">
+          <label for="songSearchInput">Search / 検索</label>
+          <input id="songSearchInput" type="search" placeholder="曲名・アーティスト・メモ・タグで検索">
         </div>
 
-        <div>
-          <p class="control-label">進捗</p>
-          <div id="statusList" class="filter-list" aria-label="進捗"></div>
+        <div class="filter-group">
+          <div>
+            <p class="control-label">バンド・用途</p>
+            <div id="bandList" class="filter-list" aria-label="バンドまたは用途"></div>
+          </div>
+
+          <div>
+            <p class="control-label">進捗</p>
+            <div id="statusList" class="filter-list" aria-label="進捗"></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section aria-labelledby="songsHeading">
-      <div class="section-heading">
-        <h2 id="songsHeading">楽曲メモ一覧</h2>
+    <section class="museum-section" aria-labelledby="songsHeading">
+      <div class="museum-section__heading museum-section__heading--split">
+        <p class="museum-section__number">02.</p>
+        <div>
+          <p class="museum-section__label">Collection</p>
+          <h2 id="songsHeading" class="museum-section__title">楽曲一覧</h2>
+        </div>
         <p id="songResultCount" class="result-count" aria-live="polite"></p>
       </div>
-      <div id="songsList" class="songs-grid"></div>
+      <div id="songsList" class="songs-grid collection-grid"></div>
+    </section>
+
+    <section class="museum-section museum-section--note" aria-labelledby="liveLinksHeading">
+      <div class="museum-section__heading">
+        <p class="museum-section__number">03.</p>
+        <div>
+          <p class="museum-section__label">Live Links</p>
+          <h2 id="liveLinksHeading" class="museum-section__title">ライブ実績とのつながり</h2>
+        </div>
+      </div>
+      <p class="museum-section__description">
+        楽曲カード内のライブ名から、該当するLive Historyの記録へ移動できます。
+      </p>
     </section>
   </main>
 
