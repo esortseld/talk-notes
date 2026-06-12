@@ -5,7 +5,7 @@ const songs = [
     titleKana: "あいでんてぃてぃ",
     artist: "椎名林檎",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
@@ -17,11 +17,11 @@ const songs = [
     titleKana: "うしろゆびさされぐみ",
     artist: "うしろゆびさされ組",
     duration: "",
-    memo: "2026/03/22 Brushup Live 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["sweet pastime"],
     status: "ライブ済み",
     tags: ["sweet pastime", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/6059#lyrics"
   },
   {
     id: "kabukicho-no-joou",
@@ -29,7 +29,7 @@ const songs = [
     titleKana: "かぶきちょうのじょおう",
     artist: "椎名林檎",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
@@ -41,11 +41,11 @@ const songs = [
     titleKana: "かなしみもにゅめんと",
     artist: "南野陽子",
     duration: "",
-    memo: "2026/03/22 Brushup Live 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["sweet pastime"],
     status: "ライブ済み",
     tags: ["sweet pastime", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/12055#lyrics"
   },
   {
     id: "gunjou-biyori",
@@ -53,11 +53,11 @@ const songs = [
     titleKana: "ぐんじょうびより",
     artist: "東京事変",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "東京事変", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/28423#lyrics"
   },
   {
     id: "koufukuron",
@@ -65,7 +65,7 @@ const songs = [
     titleKana: "こうふくろん",
     artist: "椎名林檎",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
@@ -77,11 +77,11 @@ const songs = [
     titleKana: "ここできすして",
     artist: "椎名林檎",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/18968#lyrics"
   },
   {
     id: "c-girl",
@@ -89,11 +89,11 @@ const songs = [
     titleKana: "しーがーる",
     artist: "浅香唯",
     duration: "",
-    memo: "2026/03/22 Brushup Live 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["sweet pastime"],
     status: "ライブ済み",
     tags: ["sweet pastime", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/1812#lyrics"
   },
   {
     id: "jikan-no-kuni-no-alice",
@@ -101,11 +101,11 @@ const songs = [
     titleKana: "じかんのくにのありす",
     artist: "松田聖子",
     duration: "",
-    memo: "2026/03/22 Brushup Live 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["sweet pastime"],
     status: "ライブ済み",
     tags: ["sweet pastime", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/2445#lyrics"
   },
   {
     id: "jounetsu",
@@ -113,7 +113,7 @@ const songs = [
     titleKana: "じょうねつ",
     artist: "斉藤由貴",
     duration: "",
-    memo: "2026/03/22 Brushup Live 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["sweet pastime"],
     status: "ライブ済み",
     tags: ["sweet pastime", "ライブ済み"],
@@ -125,11 +125,11 @@ const songs = [
     titleKana: "しろいほのお",
     artist: "斉藤由貴",
     duration: "",
-    memo: "2026/03/22 Brushup Live 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["sweet pastime"],
     status: "ライブ済み",
     tags: ["sweet pastime", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/3566#lyrics"
   },
   {
     id: "smile-for-me",
@@ -137,11 +137,11 @@ const songs = [
     titleKana: "すまいるふぉーみー",
     artist: "河合奈保子",
     duration: "",
-    memo: "2026/03/22 Brushup Live 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["sweet pastime"],
     status: "ライブ済み",
     tags: ["sweet pastime", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/5757#lyrics"
   },
   {
     id: "superstar",
@@ -149,7 +149,7 @@ const songs = [
     titleKana: "すーぱーすたー",
     artist: "東京事変",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "東京事変", "ライブ済み"],
@@ -161,7 +161,7 @@ const songs = [
     titleKana: "すとっぷすとっぷろっくんろーる",
     artist: "山下久美子",
     duration: "",
-    memo: "2026/04/18 Piacere Fes. 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["カンガルーポケット"],
     status: "ライブ済み",
     tags: ["カンガルーポケット", "J-POP", "ロック", "ライブ済み"],
@@ -173,11 +173,11 @@ const songs = [
     titleKana: "そのすぴーどで",
     artist: "the brilliant green",
     duration: "",
-    memo: "2026/04/18 Piacere Fes. 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["カンガルーポケット"],
     status: "ライブ済み",
     tags: ["カンガルーポケット", "J-POP", "the brilliant green", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/18811#lyrics"
   },
   {
     id: "tadashii-machi",
@@ -185,11 +185,11 @@ const songs = [
     titleKana: "ただしいまち",
     artist: "椎名林檎",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/19737#lyrics"
   },
   {
     id: "tsukimisou",
@@ -209,11 +209,11 @@ const songs = [
     titleKana: "つみとばつ",
     artist: "椎名林檎",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/23141#lyrics"
   },
   {
     id: "10years",
@@ -221,7 +221,7 @@ const songs = [
     titleKana: "てんいやーず",
     artist: "渡辺美里",
     duration: "",
-    memo: "2026/04/18 Piacere Fes. 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["カンガルーポケット"],
     status: "ライブ済み",
     tags: ["カンガルーポケット", "J-POP", "ライブ済み"],
@@ -233,11 +233,11 @@ const songs = [
     titleKana: "なんどでも",
     artist: "DREAMS COME TRUE",
     duration: "",
-    memo: "2026/04/18 Piacere Fes. 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["カンガルーポケット"],
     status: "ライブ済み",
     tags: ["カンガルーポケット", "J-POP", "DREAMS COME TRUE", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/10542#lyrics"
   },
   {
     id: "harenchi",
@@ -245,11 +245,11 @@ const songs = [
     titleKana: "はれんち",
     artist: "ちゃんみな",
     duration: "",
-    memo: "2026/04/18 Piacere Fes. 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["カンガルーポケット"],
     status: "ライブ済み",
     tags: ["カンガルーポケット", "J-POP", "ちゃんみな", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/895247#lyrics"
   },
   {
     id: "bye-my-boy",
@@ -293,11 +293,11 @@ const songs = [
     titleKana: "まるのうちさでぃすてぃっく",
     artist: "椎名林檎",
     duration: "",
-    memo: "2026/05/31 cord of friend 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/19738#lyrics"
   },
   {
     id: "yumemiru-shoujo",
@@ -305,7 +305,7 @@ const songs = [
     titleKana: "ゆめみるしょうじょじゃいられない",
     artist: "相川七瀬",
     duration: "",
-    memo: "2026/04/18 Piacere Fes. 実施済み。",
+    memo: "ライブ用メモはあとで追記。",
     bands: ["カンガルーポケット"],
     status: "ライブ済み",
     tags: ["カンガルーポケット", "J-POP", "ロック", "相川七瀬", "ライブ済み"],
