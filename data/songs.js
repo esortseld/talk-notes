@@ -7,7 +7,7 @@ const songs = [
     bands: ["カンガルーポケット"],
     status: "未着手",
     tags: ["カンガルーポケット", "J-POP"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/8289#lyrics"
   },
   {
     title: "STOP STOP ROCK'N' ROLL",
@@ -17,7 +17,7 @@ const songs = [
     bands: ["カンガルーポケット"],
     status: "未着手",
     tags: ["カンガルーポケット", "J-POP", "ロック"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/192231#lyrics"
   },
   {
     title: "BYE! MY BOY!",
@@ -27,7 +27,7 @@ const songs = [
     bands: ["カンガルーポケット"],
     status: "未着手",
     tags: ["カンガルーポケット", "J-POP", "the brilliant green"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/20756#lyrics"
   },
   {
     title: "Present",
@@ -37,7 +37,7 @@ const songs = [
     bands: ["カンガルーポケット"],
     status: "未着手",
     tags: ["カンガルーポケット", "J-POP", "TOMOO"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/1012661#lyrics"
   },
   {
     title: "ツキミソウ",
@@ -47,7 +47,7 @@ const songs = [
     bands: ["カンガルーポケット"],
     status: "未着手",
     tags: ["カンガルーポケット", "J-POP", "Novelbright"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/864235#lyrics"
   },
   {
     title: "プラスティック・ラブ",
@@ -57,7 +57,7 @@ const songs = [
     bands: ["sweet pastime"],
     status: "解釈メモ",
     tags: ["80年代", "シティポップ", "歌詞解釈", "都市生活"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/7912#lyrics"
   },
   {
     title: "幸福論",
@@ -67,7 +67,7 @@ const songs = [
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/17437#lyrics"
   },
   {
     title: "歌舞伎町の女王",
@@ -77,6 +77,6 @@ const songs = [
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "https://www.joysound.com/web/search/song/18865#lyrics"
   }
 ];
