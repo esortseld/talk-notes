@@ -4,10 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live History | Talk Notes</title>
-  <meta name="description" content="過去ライブ実績とセットリストを整理するページです。">
+  <meta name="description" content="過去ライブ実績とセットリストをカードで整理するページです。">
   <link rel="stylesheet" href="assets/style.css">
-  <script src="data/songs.js?v=20260612-03" defer></script>
-  <script src="data/lives.js?v=20260612-01" defer></script>
+  <script src="data/lives.js?v=20260612-02" defer></script>
+  <style>
+    .lives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .live-card {
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-card);
+      padding: 24px;
+    }
+
+    .live-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .live-card h2 {
+      font-size: 1.35rem;
+    }
+
+    .live-card__venue {
+      margin: 8px 0 18px;
+      color: var(--color-brown);
+      font-weight: 700;
+    }
+
+    .setlist {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .setlist-item {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 12px;
+      border-top: 1px solid var(--color-border);
+      padding-top: 10px;
+    }
+
+    .setlist-number {
+      color: var(--color-accent-dark);
+      font-weight: 700;
+    }
+
+    .setlist-item strong {
+      display: block;
+      line-height: 1.5;
+    }
+
+    .setlist-item p {
+      margin: 2px 0 0;
+      color: var(--color-muted);
+      font-size: 0.9rem;
+    }
+  </style>
   <script defer>
     document.addEventListener("DOMContentLoaded", () => {
       const livesList = document.querySelector("#livesList");
@@ -32,33 +97,13 @@
         });
       }
 
-      const songMap = new Map(songs.map((song) => [song.id, song]));
-
-      function createSetlistItem(songId, index) {
-        const song = songMap.get(songId);
-        if (!song) {
-          return `
-            <li class="setlist-item">
-              <span class="setlist-number">${String(index + 1).padStart(2, "0")}</span>
-              <div>
-                <strong>${escapeHtml(songId)}</strong>
-                <p>楽曲データ未登録</p>
-              </div>
-            </li>
-          `;
-        }
-
-        const lyricsLink = song.lyricsUrl
-          ? `<a class="external-link" href="${escapeHtml(song.lyricsUrl)}" target="_blank" rel="noopener">歌詞リンク</a>`
-          : `<span class="pending-link">歌詞リンク未設定</span>`;
-
+      function createSetlistItem(item) {
         return `
           <li class="setlist-item">
-            <span class="setlist-number">${String(index + 1).padStart(2, "0")}</span>
+            <span class="setlist-number">${escapeHtml(item.no)}</span>
             <div>
-              <strong>${escapeHtml(song.title)}</strong>
-              <p>${escapeHtml(song.artist)}</p>
-              ${lyricsLink}
+              <strong>${escapeHtml(item.title)}</strong>
+              <p>${escapeHtml(item.artist)}</p>
             </div>
           </li>
         `;
@@ -74,7 +119,6 @@
             </div>
             <h2>${escapeHtml(live.event)}</h2>
             <p class="live-card__venue">${escapeHtml(live.venue)}</p>
-            ${live.memo ? `<p class="live-card__memo">${escapeHtml(live.memo)}</p>` : ""}
             <ol class="setlist">
               ${setlist}
             </ol>
@@ -98,7 +142,7 @@
       <h1>Live History</h1>
       <p class="site-subtitle">過去ライブとセットリスト</p>
       <p class="site-description">
-        実施済みライブの日付、会場、イベント名、セットリストを記録します。まずはカンガルーポケットの実績サンプルです。
+        実施済みライブの日付、会場、イベント名、セットリストだけをカードで確認します。
       </p>
     </div>
   </header>
