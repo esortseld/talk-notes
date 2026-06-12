@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Songs | Talk Notes</title>
+  <meta name="description" content="曲名・アーティストから探す楽曲メモ。歌詞本文は掲載せず、基本情報、歌唱メモ、解釈メモ、外部歌詞リンクを整理します。">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="data/songs.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bandFilters = ["すべて", "林檎庵", "sweet pastime", "カンガルーポケット", "その他"];
+      const statusFilters = ["すべて", "ライブ済み", "練習中", "覚え中", "未着手", "解釈メモ"];
+      const state = {
+        band: "すべて",
+        status: "すべて",
+        query: ""
+      };
+
+      const bandList = document.querySelector("#bandList");
+      const statusList = document.querySelector("#statusList");
+      const searchInput = document.querySelector("#songSearchInput");
+      const songsList = document.querySelector("#songsList");
+      const resultCount = document.querySelector("#songResultCount");
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function normalize(value) {
+        return String(value).toLowerCase().trim();
+      }
+
+      function renderFilterButtons(target, options, activeValue, dataName) {
+        target.innerHTML = options.map((option) => {
+          const isActive = activeValue === option;
+          return `
+            <button class="filter-button${isActive ? " is-active" : ""}" type="button" data-${dataName}="${escapeHtml(option)}">
+              ${escapeHtml(option)}
+            </button>
+          `;
+        }).join("");
+      }
+
+      function matchesSong(song) {
+        const bands = song.bands || [];
+        const bandMatch = state.band === "すべて" || bands.includes(state.band);
+        const statusMatch = state.status === "すべて" || song.status === state.status;
+        const query = normalize(state.query);
+        const searchText = normalize([
+          song.title,
+          song.artist,
+          song.summary,
+          ...(song.tags || [])
+        ].join(" "));
+
+        return bandMatch && statusMatch && (!query || searchText.includes(query));
+      }
+
+      function createSongCard(song) {
+        const tags = (song.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+        const bands = (song.bands || []).join(" / ") || "未設定";
+        const lyricsLink = song.lyricsUrl
+          ? `<a class="external-link" href="${escapeHtml(song.lyricsUrl)}" target="_blank" rel="noopener">JOYSOUND歌詞</a>`
+          : "";
+
+        return `
+          <article class="song-card">
+            <div class="song-card__meta">
+              <span>${escapeHtml(bands)}</span>
+              <span class="status-pill">${escapeHtml(song.status || "未設定")}</span>
+            </div>
+            <h2 class="song-card__title">${escapeHtml(song.title)}</h2>
+            <p class="song-card__artist">${escapeHtml(song.artist)}</p>
+            <p class="song-card__summary">${escapeHtml(song.summary)}</p>
+            <div class="tag-list" aria-label="タグ">
+              ${tags}
+            </div>
+            <div class="link-row">
+              <a class="read-link" href="${escapeHtml(song.memoUrl)}">メモを見る</a>
+              ${lyricsLink}
+            </div>
+          </article>
+        `;
+      }
+
+      function renderSongs() {
+        const filteredSongs = songs.filter(matchesSong);
+        resultCount.textContent = `${filteredSongs.length}曲`;
+
+        if (filteredSongs.length === 0) {
+          songsList.innerHTML = '<p class="empty-message">該当する楽曲メモはありません。</p>';
+          return;
+        }
+
+        songsList.innerHTML = filteredSongs.map(createSongCard).join("");
+      }
+
+      bandList.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-band]");
+        if (!button) {
+          return;
+        }
+
+        state.band = button.dataset.band;
+        renderFilterButtons(bandList, bandFilters, state.band, "band");
+        renderSongs();
+      });
+
+      statusList.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-status]");
+        if (!button) {
+          return;
+        }
+
+        state.status = button.dataset.status;
+        renderFilterButtons(statusList, statusFilters, state.status, "status");
+        renderSongs();
+      });
+
+      searchInput.addEventListener("input", (event) => {
+        state.query = event.target.value;
+        renderSongs();
+      });
+
+      renderFilterButtons(bandList, bandFilters, state.band, "band");
+      renderFilterButtons(statusList, statusFilters, state.status, "status");
+      renderSongs();
+    });
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="breadcrumb">
+        <a class="back-link" href="index.html">Talk Notesへ戻る</a>
+      </div>
+      <p class="site-kicker">Songs</p>
+      <h1>Songs</h1>
+      <p class="site-subtitle">曲名・アーティストから探す楽曲メモ</p>
+      <p class="site-description">
+        歌詞本文は掲載せず、曲ごとの基本情報、歌唱メモ、解釈メモ、練習状況、外部歌詞リンクを整理します。
+      </p>
+    </div>
+  </header>
+
+  <main class="container songs-panel">
+    <section class="controls" aria-label="楽曲メモの絞り込み">
+      <div class="search-field">
+        <label for="songSearchInput">検索</label>
+        <input id="songSearchInput" type="search" placeholder="曲名・アーティスト・タグで検索">
+      </div>
+
+      <div class="filter-group">
+        <div>
+          <p class="control-label">バンド・用途</p>
+          <div id="bandList" class="filter-list" aria-label="バンドまたは用途"></div>
+        </div>
+
+        <div>
+          <p class="control-label">進捗</p>
+          <div id="statusList" class="filter-list" aria-label="進捗"></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="songsHeading">
+      <div class="section-heading">
+        <h2 id="songsHeading">楽曲メモ一覧</h2>
+        <p id="songResultCount" class="result-count" aria-live="polite"></p>
+      </div>
+      <div id="songsList" class="songs-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Talk Notes</p>
+    </div>
+  </footer>
+</body>
+</html>
