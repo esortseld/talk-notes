@@ -10,7 +10,7 @@ const songs = [
     lyricsUrl: "https://www.joysound.com/web/search/song/8289#lyrics"
   },
   {
-    title: "STOP STOP ROCK'N' ROLL",
+    title: "Stop Stop Rock'n'Roll",
     artist: "山下久美子",
     duration: "",
     memo: "カンガルーポケット用。勢いとリズム確認。",
@@ -48,6 +48,16 @@ const songs = [
     status: "未着手",
     tags: ["カンガルーポケット", "J-POP", "Novelbright"],
     lyricsUrl: "https://www.joysound.com/web/search/song/864235#lyrics"
+  },
+  {
+    title: "夢見る少女じゃいられない",
+    artist: "相川七瀬",
+    duration: "",
+    memo: "カンガルーポケット用。勢い、入り、サビの押し出しをあとで確認。",
+    bands: ["カンガルーポケット"],
+    status: "未着手",
+    tags: ["カンガルーポケット", "J-POP", "ロック", "相川七瀬"],
+    lyricsUrl: "https://www.joysound.com/web/search/song/9619"
   },
   {
     title: "プラスティック・ラブ",
