@@ -9,7 +9,8 @@ const songs = [
     bands: ["林檎庵"],
     status: "ライブ済み",
     tags: ["林檎庵", "椎名林檎", "ライブ済み"],
-    lyricsUrl: ""
+    lyricsUrl: "",
+    youtubeUrl: "https://youtu.be/7lXOPpEbNiI?si=MbsX3rjxXy3lIbgj"
   },
   {
     id: "ushiroyubi-sasaregumi",
