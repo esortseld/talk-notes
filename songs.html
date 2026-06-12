@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Songs | Talk Notes</title>
   <meta name="description" content="曲名・アーティストから探す楽曲メモ。タイトル、分秒、短いメモ、歌詞リンクを管理します。">
-  <link rel="stylesheet" href="assets/style.css?v=20260613-01">
-  <script src="data/songs.js?v=20260613-01" defer></script>
+  <link rel="stylesheet" href="assets/style.css?v=20260613-02">
+  <script src="data/songs.js?v=20260613-02" defer></script>
   <script src="data/lives.js?v=20260613-01" defer></script>
   <script defer>
     document.addEventListener("DOMContentLoaded", () => {
@@ -90,12 +90,22 @@
         const lyricsLink = song.lyricsUrl
           ? `<a class="external-link" href="${escapeHtml(song.lyricsUrl)}" target="_blank" rel="noopener">歌詞リンク</a>`
           : "";
-
-        return `
-          <article id="song-${escapeHtml(song.id)}" class="song-card song-card--simple collection-card">
+        const imageFrame = song.youtubeUrl
+          ? `
+            <a class="song-card__image-placeholder song-card__image-link" href="${escapeHtml(song.youtubeUrl)}" target="_blank" rel="noopener">
+              <span>YouTube</span>
+              <small>参考動画へ</small>
+            </a>
+          `
+          : `
             <div class="song-card__image-placeholder" aria-hidden="true">
               <span>Image</span>
             </div>
+          `;
+
+        return `
+          <article id="song-${escapeHtml(song.id)}" class="song-card song-card--simple collection-card">
+            ${imageFrame}
             <p class="song-card__eyebrow">Collection No. ${collectionNumber}</p>
             <h2 class="song-card__title">${escapeHtml(song.title)}</h2>
             <p class="song-card__artist">${escapeHtml(song.artist)}</p>
@@ -183,22 +193,22 @@
       </div>
 
       <div class="controls museum-search-panel">
-        <div class="search-field">
-          <label for="songSearchInput">Search / 検索</label>
-          <input id="songSearchInput" type="search" placeholder="曲名・アーティスト・メモ・タグで検索">
+      <div class="search-field">
+        <label for="songSearchInput">Search / 検索</label>
+        <input id="songSearchInput" type="search" placeholder="曲名・アーティスト・メモ・タグで検索">
+      </div>
+
+      <div class="filter-group">
+        <div>
+          <p class="control-label">バンド・用途</p>
+          <div id="bandList" class="filter-list" aria-label="バンドまたは用途"></div>
         </div>
 
-        <div class="filter-group">
-          <div>
-            <p class="control-label">バンド・用途</p>
-            <div id="bandList" class="filter-list" aria-label="バンドまたは用途"></div>
-          </div>
-
-          <div>
-            <p class="control-label">進捗</p>
-            <div id="statusList" class="filter-list" aria-label="進捗"></div>
-          </div>
+        <div>
+          <p class="control-label">進捗</p>
+          <div id="statusList" class="filter-list" aria-label="進捗"></div>
         </div>
+      </div>
       </div>
     </section>
 
