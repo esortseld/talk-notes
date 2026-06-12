@@ -6,7 +6,7 @@
   <title>Live History | Talk Notes</title>
   <meta name="description" content="過去ライブ実績とセットリストをカードで整理するページです。">
   <link rel="stylesheet" href="assets/style.css">
-  <script src="data/lives.js?v=20260612-02" defer></script>
+  <script src="data/lives.js?v=20260612-03" defer></script>
   <style>
     .lives-grid {
       display: grid;
@@ -72,6 +72,12 @@
       color: var(--color-muted);
       font-size: 0.9rem;
     }
+
+    @media (max-width: 720px) {
+      .lives-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
   <script defer>
     document.addEventListener("DOMContentLoaded", () => {
@@ -97,12 +103,20 @@
         });
       }
 
+      function compareLives(a, b) {
+        return String(a.date).localeCompare(String(b.date));
+      }
+
       function createSetlistItem(item) {
+        const title = item.songId
+          ? `<a href="songs.html#song-${escapeHtml(item.songId)}">${escapeHtml(item.title)}</a>`
+          : escapeHtml(item.title);
+
         return `
           <li class="setlist-item">
             <span class="setlist-number">${escapeHtml(item.no)}</span>
             <div>
-              <strong>${escapeHtml(item.title)}</strong>
+              <strong>${title}</strong>
               <p>${escapeHtml(item.artist)}</p>
             </div>
           </li>
@@ -126,8 +140,9 @@
         `;
       }
 
-      resultCount.textContent = `${lives.length}件`;
-      livesList.innerHTML = lives.map(createLiveCard).join("");
+      const sortedLives = lives.slice().sort(compareLives);
+      resultCount.textContent = `${sortedLives.length}件`;
+      livesList.innerHTML = sortedLives.map(createLiveCard).join("");
     });
   </script>
 </head>
