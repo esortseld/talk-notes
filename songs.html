@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Songs | Talk Notes</title>
-  <meta name="description" content="曲名・アーティストから探す楽曲メモ。歌詞本文は掲載せず、基本情報、歌唱メモ、解釈メモ、外部歌詞リンクを整理します。">
+  <meta name="description" content="曲名・アーティストから探す楽曲メモ。タイトル、分秒、短いメモ、歌詞リンクを管理します。">
   <link rel="stylesheet" href="assets/style.css">
   <script src="data/songs.js" defer></script>
   <script defer>
@@ -24,7 +24,7 @@
       const resultCount = document.querySelector("#songResultCount");
 
       function escapeHtml(value) {
-        return String(value)
+        return String(value ?? "")
           .replace(/&/g, "&amp;")
           .replace(/</g, "&lt;")
           .replace(/>/g, "&gt;")
@@ -33,7 +33,7 @@
       }
 
       function normalize(value) {
-        return String(value).toLowerCase().trim();
+        return String(value ?? "").toLowerCase().trim();
       }
 
       function renderFilterButtons(target, options, activeValue, dataName) {
@@ -55,7 +55,9 @@
         const searchText = normalize([
           song.title,
           song.artist,
-          song.summary,
+          song.memo,
+          song.duration,
+          song.status,
           ...(song.tags || [])
         ].join(" "));
 
@@ -65,24 +67,26 @@
       function createSongCard(song) {
         const tags = (song.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
         const bands = (song.bands || []).join(" / ") || "未設定";
+        const duration = song.duration ? escapeHtml(song.duration) : "分秒未設定";
+        const memo = song.memo || "メモ未設定";
         const lyricsLink = song.lyricsUrl
-          ? `<a class="external-link" href="${escapeHtml(song.lyricsUrl)}" target="_blank" rel="noopener">JOYSOUND歌詞</a>`
-          : "";
+          ? `<a class="external-link" href="${escapeHtml(song.lyricsUrl)}" target="_blank" rel="noopener">歌詞リンク</a>`
+          : `<span class="pending-link">歌詞リンク未設定</span>`;
 
         return `
-          <article class="song-card">
+          <article class="song-card song-card--simple">
             <div class="song-card__meta">
               <span>${escapeHtml(bands)}</span>
               <span class="status-pill">${escapeHtml(song.status || "未設定")}</span>
+              <span>${duration}</span>
             </div>
             <h2 class="song-card__title">${escapeHtml(song.title)}</h2>
             <p class="song-card__artist">${escapeHtml(song.artist)}</p>
-            <p class="song-card__summary">${escapeHtml(song.summary)}</p>
+            <p class="song-card__summary">${escapeHtml(memo)}</p>
             <div class="tag-list" aria-label="タグ">
               ${tags}
             </div>
             <div class="link-row">
-              <a class="read-link" href="${escapeHtml(song.memoUrl)}">メモを見る</a>
               ${lyricsLink}
             </div>
           </article>
@@ -103,9 +107,7 @@
 
       bandList.addEventListener("click", (event) => {
         const button = event.target.closest("button[data-band]");
-        if (!button) {
-          return;
-        }
+        if (!button) return;
 
         state.band = button.dataset.band;
         renderFilterButtons(bandList, bandFilters, state.band, "band");
@@ -114,9 +116,7 @@
 
       statusList.addEventListener("click", (event) => {
         const button = event.target.closest("button[data-status]");
-        if (!button) {
-          return;
-        }
+        if (!button) return;
 
         state.status = button.dataset.status;
         renderFilterButtons(statusList, statusFilters, state.status, "status");
@@ -144,7 +144,7 @@
       <h1>Songs</h1>
       <p class="site-subtitle">曲名・アーティストから探す楽曲メモ</p>
       <p class="site-description">
-        歌詞本文は掲載せず、曲ごとの基本情報、歌唱メモ、解釈メモ、練習状況、外部歌詞リンクを整理します。
+        タイトル、アーティスト、分秒、短いメモ、歌詞リンクだけを置く簡易メモです。歌詞本文は掲載しません。
       </p>
     </div>
   </header>
@@ -153,7 +153,7 @@
     <section class="controls" aria-label="楽曲メモの絞り込み">
       <div class="search-field">
         <label for="songSearchInput">検索</label>
-        <input id="songSearchInput" type="search" placeholder="曲名・アーティスト・タグで検索">
+        <input id="songSearchInput" type="search" placeholder="曲名・アーティスト・メモ・タグで検索">
       </div>
 
       <div class="filter-group">
