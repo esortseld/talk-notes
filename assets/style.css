@@ -250,8 +250,17 @@ h1 {
   padding: 24px;
 }
 
+.song-card {
+  scroll-margin-top: 24px;
+}
+
 .song-card--simple {
   min-height: 260px;
+}
+
+.song-card:target {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(95, 114, 82, 0.18), var(--shadow-card);
 }
 
 .note-card__meta,
