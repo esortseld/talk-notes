@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live History | Talk Notes</title>
+  <meta name="description" content="過去ライブ実績とセットリストを整理するページです。">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="data/songs.js?v=20260612-03" defer></script>
+  <script src="data/lives.js?v=20260612-01" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const livesList = document.querySelector("#livesList");
+      const resultCount = document.querySelector("#liveResultCount");
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function formatDate(value) {
+        const date = new Date(`${value}T00:00:00`);
+        if (Number.isNaN(date.getTime())) return value;
+        return date.toLocaleDateString("ja-JP", {
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        });
+      }
+
+      const songMap = new Map(songs.map((song) => [song.id, song]));
+
+      function createSetlistItem(songId, index) {
+        const song = songMap.get(songId);
+        if (!song) {
+          return `
+            <li class="setlist-item">
+              <span class="setlist-number">${String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <strong>${escapeHtml(songId)}</strong>
+                <p>楽曲データ未登録</p>
+              </div>
+            </li>
+          `;
+        }
+
+        const lyricsLink = song.lyricsUrl
+          ? `<a class="external-link" href="${escapeHtml(song.lyricsUrl)}" target="_blank" rel="noopener">歌詞リンク</a>`
+          : `<span class="pending-link">歌詞リンク未設定</span>`;
+
+        return `
+          <li class="setlist-item">
+            <span class="setlist-number">${String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <strong>${escapeHtml(song.title)}</strong>
+              <p>${escapeHtml(song.artist)}</p>
+              ${lyricsLink}
+            </div>
+          </li>
+        `;
+      }
+
+      function createLiveCard(live) {
+        const setlist = (live.setlist || []).map(createSetlistItem).join("");
+        return `
+          <article class="live-card">
+            <div class="live-card__meta">
+              <time datetime="${escapeHtml(live.date)}">${escapeHtml(formatDate(live.date))}</time>
+              <span>${escapeHtml(live.band)}</span>
+            </div>
+            <h2>${escapeHtml(live.event)}</h2>
+            <p class="live-card__venue">${escapeHtml(live.venue)}</p>
+            ${live.memo ? `<p class="live-card__memo">${escapeHtml(live.memo)}</p>` : ""}
+            <ol class="setlist">
+              ${setlist}
+            </ol>
+          </article>
+        `;
+      }
+
+      resultCount.textContent = `${lives.length}件`;
+      livesList.innerHTML = lives.map(createLiveCard).join("");
+    });
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="breadcrumb">
+        <a class="back-link" href="index.html">Talk Notesへ戻る</a>
+        <a class="back-link" href="songs.html">Songsへ</a>
+      </div>
+      <p class="site-kicker">Live History</p>
+      <h1>Live History</h1>
+      <p class="site-subtitle">過去ライブとセットリスト</p>
+      <p class="site-description">
+        実施済みライブの日付、会場、イベント名、セットリストを記録します。まずはカンガルーポケットの実績サンプルです。
+      </p>
+    </div>
+  </header>
+
+  <main class="container songs-panel">
+    <section aria-labelledby="livesHeading">
+      <div class="section-heading">
+        <h2 id="livesHeading">ライブ実績一覧</h2>
+        <p id="liveResultCount" class="result-count" aria-live="polite"></p>
+      </div>
+      <div id="livesList" class="lives-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Talk Notes</p>
+    </div>
+  </footer>
+</body>
+</html>
