@@ -1,0 +1,50 @@
+const songs = [
+  {
+    title: "プラスティック・ラブ",
+    artist: "竹内まりや",
+    lyricist: "",
+    composer: "",
+    year: "1984",
+    originalKey: "",
+    myKey: "",
+    bands: ["sweet pastime"],
+    status: "解釈メモ",
+    progress: "",
+    tags: ["80年代", "シティポップ", "歌詞解釈", "都市生活"],
+    summary: "都市的な恋愛観と消費イメージを含む楽曲。主人公像の解釈メモ。",
+    lyricsUrl: "",
+    memoUrl: "notes/songs/sample-song.html"
+  },
+  {
+    title: "幸福論",
+    artist: "椎名林檎",
+    lyricist: "",
+    composer: "",
+    year: "1998",
+    originalKey: "",
+    myKey: "",
+    bands: ["林檎庵"],
+    status: "覚え中",
+    progress: "",
+    tags: ["椎名林檎", "初期", "歌唱練習", "言葉"],
+    summary: "初期の椎名林檎らしい言葉の強さと、真っすぐな感情の出し方を確認する曲。",
+    lyricsUrl: "",
+    memoUrl: "notes/songs/sample-song.html"
+  },
+  {
+    title: "歌舞伎町の女王",
+    artist: "椎名林檎",
+    lyricist: "",
+    composer: "",
+    year: "1998",
+    originalKey: "",
+    myKey: "",
+    bands: ["林檎庵"],
+    status: "練習中",
+    progress: "",
+    tags: ["椎名林檎", "物語", "歌唱メモ", "ライブ候補"],
+    summary: "物語性のある主人公像、語尾の処理、ライブでの見せ方を整理したい曲。",
+    lyricsUrl: "",
+    memoUrl: "notes/songs/sample-song.html"
+  }
+];
