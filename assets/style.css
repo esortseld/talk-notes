@@ -250,6 +250,10 @@ h1 {
   padding: 24px;
 }
 
+.song-card--simple {
+  min-height: 260px;
+}
+
 .note-card__meta,
 .song-card__meta {
   display: flex;
@@ -315,13 +319,19 @@ h1 {
 }
 
 .read-link,
-.external-link {
+.external-link,
+.pending-link {
   align-self: flex-start;
   font-weight: 700;
 }
 
 .external-link {
   color: var(--color-brown);
+}
+
+.pending-link {
+  color: var(--color-muted);
+  font-size: 0.9rem;
 }
 
 .empty-message {
