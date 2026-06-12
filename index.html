@@ -1,122 +1,184 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Talk Notes｜雑談から残す、あとで読むメモ</title>
-  <meta name="description" content="ChatGPTとの会話の中で出てきた疑問、調べもの、考えたことのうち、後から見返したいものだけを整理して残す場所です。">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talk Notes</title>
+  <meta name="description" content="雑談、調べもの、制作ログ、楽曲メモをあとで読める形に整理する個人用ノートです。">
   <link rel="stylesheet" href="assets/style.css">
+  <script src="data/notes.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const categories = ["すべて", "音楽", "言葉", "仕事", "IT", "AI", "健康", "生活", "企画", "その他"];
+      const state = {
+        category: "すべて",
+        query: ""
+      };
+
+      const categoryList = document.querySelector("#categoryList");
+      const searchInput = document.querySelector("#searchInput");
+      const notesList = document.querySelector("#notesList");
+      const resultCount = document.querySelector("#resultCount");
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function normalize(value) {
+        return String(value).toLowerCase().trim();
+      }
+
+      function formatDate(value) {
+        const date = new Date(`${value}T00:00:00`);
+        if (Number.isNaN(date.getTime())) {
+          return value;
+        }
+
+        return date.toLocaleDateString("ja-JP", {
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        });
+      }
+
+      function renderCategories() {
+        categoryList.innerHTML = categories.map((category) => {
+          const isActive = state.category === category;
+          return `
+            <button class="filter-button${isActive ? " is-active" : ""}" type="button" data-category="${escapeHtml(category)}">
+              ${escapeHtml(category)}
+            </button>
+          `;
+        }).join("");
+      }
+
+      function matchesNote(note) {
+        const categoryMatch = state.category === "すべて" || note.category === state.category;
+        const query = normalize(state.query);
+        const searchText = normalize([
+          note.title,
+          note.summary,
+          note.category,
+          ...(note.tags || [])
+        ].join(" "));
+
+        return categoryMatch && (!query || searchText.includes(query));
+      }
+
+      function createNoteCard(note) {
+        const tags = (note.tags || []).map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+
+        return `
+          <article class="note-card">
+            <div class="note-card__meta">
+              <time datetime="${escapeHtml(note.date)}">${escapeHtml(formatDate(note.date))}</time>
+              <span>${escapeHtml(note.category)}</span>
+            </div>
+            <h2 class="note-card__title">${escapeHtml(note.title)}</h2>
+            <p class="note-card__summary">${escapeHtml(note.summary)}</p>
+            <div class="tag-list" aria-label="タグ">
+              ${tags}
+            </div>
+            <a class="read-link" href="${escapeHtml(note.url)}">読む</a>
+          </article>
+        `;
+      }
+
+      function renderNotes() {
+        const filteredNotes = notes.filter(matchesNote);
+        resultCount.textContent = `${filteredNotes.length}件`;
+
+        if (filteredNotes.length === 0) {
+          notesList.innerHTML = '<p class="empty-message">該当するメモはありません。</p>';
+          return;
+        }
+
+        notesList.innerHTML = filteredNotes.map(createNoteCard).join("");
+      }
+
+      categoryList.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-category]");
+        if (!button) {
+          return;
+        }
+
+        state.category = button.dataset.category;
+        renderCategories();
+        renderNotes();
+      });
+
+      searchInput.addEventListener("input", (event) => {
+        state.query = event.target.value;
+        renderNotes();
+      });
+
+      renderCategories();
+      renderNotes();
+    });
+  </script>
 </head>
 <body>
   <header class="site-header">
-    <div class="wrap">
-      <p class="eyebrow">Personal archive from conversations</p>
+    <div class="container header-inner">
+      <p class="site-kicker">Personal archive</p>
       <h1>Talk Notes</h1>
-      <p class="subtitle">雑談から残す、あとで読むメモ</p>
-      <p class="lead">ChatGPTとの会話の中で出てきた疑問、調べもの、考えたことのうち、後から見返したいものだけを整理して残す場所です。</p>
+      <p class="site-subtitle">雑談、調べもの、制作ログ、楽曲メモをあとで読む</p>
+      <p class="site-description">
+        日々の会話や作業の中で出てきた疑問、調べもの、制作ログ、楽曲メモを、あとで使える形に整理して残す個人用ノートです。
+      </p>
     </div>
   </header>
 
-  <main class="wrap main-layout">
-    <section class="controls" aria-label="記事の絞り込み">
-      <div class="search-box">
-        <label for="searchInput">検索</label>
-        <input id="searchInput" type="search" placeholder="タイトル・要約・タグで検索">
-      </div>
-      <div class="category-area">
-        <p class="control-label">カテゴリ</p>
-        <div id="categoryButtons" class="category-buttons"></div>
-      </div>
+  <main class="container">
+    <section class="entry-section" aria-label="主要セクション">
+      <a class="entry-card entry-card--primary" href="songs.html">
+        <span class="entry-card__label">Songs</span>
+        <h2>楽曲メモ</h2>
+        <p>曲名、アーティスト、使用バンド、歌唱メモ、解釈メモ、外部歌詞リンクを整理します。</p>
+        <span class="entry-card__link">Songsへ</span>
+      </a>
+
+      <a class="entry-card" href="#notes">
+        <span class="entry-card__label">Notes</span>
+        <h2>雑多メモ</h2>
+        <p>会話、調べもの、制作ログ、考えたことを、後から読み返せる短い記事として残します。</p>
+        <span class="entry-card__link">Notesを見る</span>
+      </a>
     </section>
 
-    <section class="intro-card">
-      <h2>このサイトの使い方</h2>
-      <p>会話の全部を保存する場所ではなく、「これは残す」と決めた話だけを短い記事にして置く場所です。分類は固定カテゴリで大きく分け、タグで横断できるようにします。</p>
-    </section>
-
-    <section>
+    <section id="notes" class="notes-panel" aria-label="雑多メモ">
       <div class="section-heading">
-        <h2>Notes</h2>
-        <p id="resultCount">0件</p>
+        <div>
+          <p class="section-kicker">Notes</p>
+          <h2>雑多メモ</h2>
+        </div>
+        <p id="resultCount" class="result-count" aria-live="polite"></p>
       </div>
-      <div id="notesGrid" class="notes-grid"></div>
-      <p id="emptyMessage" class="empty-message" hidden>該当するメモはありません。</p>
+
+      <div class="compact-controls" aria-label="雑多メモの絞り込み">
+        <div class="search-field">
+          <label for="searchInput">検索</label>
+          <input id="searchInput" type="search" placeholder="タイトル・要約・タグで検索">
+        </div>
+        <div>
+          <p class="control-label">カテゴリ</p>
+          <div id="categoryList" class="filter-list" aria-label="カテゴリ一覧"></div>
+        </div>
+      </div>
+
+      <div id="notesList" class="notes-grid"></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">
-      <small>© Talk Notes</small>
+    <div class="container">
+      <p>Talk Notes</p>
     </div>
   </footer>
-
-  <script src="data/notes.js"></script>
-  <script>
-    const categories = ['すべて', '音楽', '言葉', '仕事', 'IT', 'AI', '健康', '生活', '企画', 'その他'];
-    const state = { category: 'すべて', query: '' };
-
-    const categoryButtons = document.getElementById('categoryButtons');
-    const notesGrid = document.getElementById('notesGrid');
-    const resultCount = document.getElementById('resultCount');
-    const emptyMessage = document.getElementById('emptyMessage');
-    const searchInput = document.getElementById('searchInput');
-
-    function renderCategoryButtons() {
-      categoryButtons.innerHTML = '';
-      categories.forEach(category => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'category-button';
-        button.textContent = category;
-        button.dataset.category = category;
-        if (category === state.category) button.classList.add('is-active');
-        button.addEventListener('click', () => {
-          state.category = category;
-          render();
-        });
-        categoryButtons.appendChild(button);
-      });
-    }
-
-    function matches(note) {
-      const q = state.query.trim().toLowerCase();
-      const categoryMatch = state.category === 'すべて' || note.category === state.category;
-      const text = [note.title, note.summary, note.category, ...(note.tags || [])].join(' ').toLowerCase();
-      const queryMatch = !q || text.includes(q);
-      return categoryMatch && queryMatch;
-    }
-
-    function noteCard(note) {
-      const article = document.createElement('article');
-      article.className = 'note-card';
-      article.innerHTML = `
-        <div class="note-meta">
-          <span>${note.date}</span>
-          <span>${note.category}</span>
-        </div>
-        <h3>${note.title}</h3>
-        <p>${note.summary}</p>
-        <div class="tags">${(note.tags || []).map(tag => `<span>${tag}</span>`).join('')}</div>
-        <a class="read-link" href="${note.url}">読む</a>
-      `;
-      return article;
-    }
-
-    function render() {
-      renderCategoryButtons();
-      const filtered = notes.filter(matches);
-      notesGrid.innerHTML = '';
-      filtered.forEach(note => notesGrid.appendChild(noteCard(note)));
-      resultCount.textContent = `${filtered.length}件`;
-      emptyMessage.hidden = filtered.length !== 0;
-    }
-
-    searchInput.addEventListener('input', event => {
-      state.query = event.target.value;
-      render();
-    });
-
-    render();
-  </script>
 </body>
 </html>
