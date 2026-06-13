@@ -362,7 +362,7 @@ h1 {
 
 .read-link,
 .external-link,
-pending-link {
+.pending-link {
   align-self: flex-start;
   font-weight: 700;
 }
