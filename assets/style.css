@@ -122,6 +122,15 @@ h1 {
   text-transform: uppercase;
 }
 
+.entry-card__icon {
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0.5rem 0 0.75rem;
+  object-fit: cover;
+  border-radius: 999px;
+}
+
 .entry-card h2 {
   margin-top: 10px;
   font-size: 1.65rem;
@@ -353,7 +362,7 @@ h1 {
 
 .read-link,
 .external-link,
-.pending-link {
+pending-link {
   align-self: flex-start;
   font-weight: 700;
 }
