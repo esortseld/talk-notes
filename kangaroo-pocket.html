@@ -6,6 +6,84 @@
   <title>カンガルーポケット | Talk Notes</title>
   <meta name="description" content="カンガルーポケットのライブ情報とセットリスト。">
   <link rel="stylesheet" href="assets/style.css?v=20260614-03">
+  <style>
+    .live-group{
+      margin-top:1.5rem;
+      padding:1.2rem;
+      border-radius:22px;
+      border:1px solid rgba(70, 55, 38, .14);
+    }
+    .live-group + .live-group{margin-top:1.35rem}
+    .live-group__heading{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      margin-bottom:1rem;
+    }
+    .live-group__label{
+      margin:0;
+      font-size:.78rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:700;
+      opacity:.72;
+    }
+    .live-group__title{
+      margin:.2rem 0 0;
+      font-size:1.22rem;
+      line-height:1.35;
+    }
+    .live-group__badge{
+      display:inline-flex;
+      align-items:center;
+      white-space:nowrap;
+      padding:.42rem .72rem;
+      border-radius:999px;
+      font-size:.82rem;
+      font-weight:700;
+    }
+    .live-group--schedule{
+      background:linear-gradient(135deg, rgba(227, 242, 255, .96), rgba(247, 251, 255, .96));
+      border-color:rgba(70, 139, 210, .28);
+      box-shadow:0 14px 32px rgba(58, 126, 190, .10);
+    }
+    .live-group--schedule .live-group__badge{
+      color:#1f5f93;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(70,139,210,.28);
+    }
+    .live-group--archive{
+      background:linear-gradient(135deg, rgba(250, 242, 229, .96), rgba(255, 250, 244, .96));
+      border-color:rgba(173, 126, 74, .28);
+      box-shadow:0 14px 32px rgba(128, 91, 50, .08);
+    }
+    .live-group--archive .live-group__badge{
+      color:#7a5632;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(173,126,74,.28);
+    }
+    .live-card--schedule{
+      border-color:rgba(70,139,210,.3);
+    }
+    .live-card--archive{
+      border-color:rgba(173,126,74,.26);
+    }
+    .setlist-plain{
+      list-style:none;
+      padding-left:0;
+    }
+    .setlist-plain li{
+      margin:.45rem 0;
+      padding:.55rem .7rem;
+      border-radius:12px;
+      background:rgba(255,255,255,.55);
+    }
+    @media (max-width:680px){
+      .live-group{padding:1rem}
+      .live-group__heading{align-items:flex-start; flex-direction:column}
+    }
+  </style>
 </head>
 <body class="songs-page">
   <header class="site-header museum-hero">
@@ -30,67 +108,89 @@
         </div>
       </div>
 
-      <div class="songs-grid collection-grid">
-        <article class="song-card collection-card live-card" id="piacere-fes" aria-labelledby="piacereFesTitle">
-          <p class="song-card__eyebrow">Live Archive</p>
-          <h3 id="piacereFesTitle" class="song-card__title">Piacere Fes.</h3>
-          <dl class="info-list">
-            <dt>日付</dt>
-            <dd>2026/4/18</dd>
-            <dt>会場</dt>
-            <dd>Piacere</dd>
-          </dl>
+      <section class="live-group live-group--schedule" aria-labelledby="scheduleHeading">
+        <div class="live-group__heading">
+          <div>
+            <p class="live-group__label">Schedule</p>
+            <h3 id="scheduleHeading" class="live-group__title">予定</h3>
+          </div>
+          <span class="live-group__badge">これから</span>
+        </div>
 
-          <p class="song-card__eyebrow">Setlist</p>
-          <ol>
-            <li>Stop Stop Rock'n'Roll<br><small>山下久美子</small></li>
-            <li>そのスピードで<br><small>the brilliant green</small></li>
-            <li>ハレンチ<br><small>ちゃんみな</small></li>
-            <li>何度でも<br><small>DREAMS COME TRUE</small></li>
-            <li>10 years<br><small>渡辺美里</small></li>
-            <li>夢見る少女じゃいられない<br><small>相川七瀬</small></li>
-          </ol>
-        </article>
+        <div class="songs-grid collection-grid">
+          <article class="song-card collection-card live-card live-card--schedule" id="aozaru-night" aria-labelledby="aozaruNightTitle">
+            <p class="song-card__eyebrow">Live Schedule</p>
+            <h3 id="aozaruNightTitle" class="song-card__title">青猿Night</h3>
+            <dl class="info-list">
+              <dt>日付</dt>
+              <dd>2026/10/18</dd>
+              <dt>会場</dt>
+              <dd>Music Barアルマジロ</dd>
+            </dl>
 
-        <article class="song-card collection-card live-card" id="tanabata-live" aria-labelledby="tanabataLiveTitle">
-          <p class="song-card__eyebrow">Live Archive</p>
-          <h3 id="tanabataLiveTitle" class="song-card__title">七夕ライブ</h3>
-          <dl class="info-list">
-            <dt>日付</dt>
-            <dd>2026/7/4</dd>
-            <dt>会場</dt>
-            <dd>Seven Bridges Road</dd>
-          </dl>
+            <p class="song-card__eyebrow">Setlist</p>
+            <ul class="setlist-plain">
+              <li>ツキミソウ<br><small>予定</small></li>
+              <li>10 years<br><small>予定</small></li>
+              <li>Inspire<br><small>予定</small></li>
+              <li>Present<br><small>予定</small></li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-          <p class="song-card__eyebrow">Setlist</p>
-          <ol>
-            <li>Stop Stop Rock'n' Roll<br><small>山下久美子</small></li>
-            <li>そのスピードで<br><small>the brilliant green</small></li>
-            <li>何度でも<br><small>DREAMS COME TRUE</small></li>
-            <li>Bye My Boy<br><small>the brilliant green</small></li>
-            <li>夢見る少女じゃいられない<br><small>相川七瀬</small></li>
-          </ol>
-        </article>
+      <section class="live-group live-group--archive" aria-labelledby="archiveHeading">
+        <div class="live-group__heading">
+          <div>
+            <p class="live-group__label">Archive</p>
+            <h3 id="archiveHeading" class="live-group__title">アーカイブ</h3>
+          </div>
+          <span class="live-group__badge">実施済み</span>
+        </div>
 
-        <article class="song-card collection-card live-card" id="aozaru-night" aria-labelledby="aozaruNightTitle">
-          <p class="song-card__eyebrow">Live Schedule</p>
-          <h3 id="aozaruNightTitle" class="song-card__title">青猿Night</h3>
-          <dl class="info-list">
-            <dt>日付</dt>
-            <dd>2026/10/18</dd>
-            <dt>会場</dt>
-            <dd>Music Barアルマジロ</dd>
-          </dl>
+        <div class="songs-grid collection-grid">
+          <article class="song-card collection-card live-card live-card--archive" id="piacere-fes" aria-labelledby="piacereFesTitle">
+            <p class="song-card__eyebrow">Live Archive</p>
+            <h3 id="piacereFesTitle" class="song-card__title">Piacere Fes.</h3>
+            <dl class="info-list">
+              <dt>日付</dt>
+              <dd>2026/4/18</dd>
+              <dt>会場</dt>
+              <dd>Piacere</dd>
+            </dl>
 
-          <p class="song-card__eyebrow">Setlist</p>
-          <ol>
-            <li>ツキミソウ<br><small>予定</small></li>
-            <li>10 years<br><small>予定</small></li>
-            <li>Inspire<br><small>予定</small></li>
-            <li>Present<br><small>予定</small></li>
-          </ol>
-        </article>
-      </div>
+            <p class="song-card__eyebrow">Setlist</p>
+            <ol>
+              <li>Stop Stop Rock'n'Roll<br><small>山下久美子</small></li>
+              <li>そのスピードで<br><small>the brilliant green</small></li>
+              <li>ハレンチ<br><small>ちゃんみな</small></li>
+              <li>何度でも<br><small>DREAMS COME TRUE</small></li>
+              <li>10 years<br><small>渡辺美里</small></li>
+              <li>夢見る少女じゃいられない<br><small>相川七瀬</small></li>
+            </ol>
+          </article>
+
+          <article class="song-card collection-card live-card live-card--archive" id="tanabata-live" aria-labelledby="tanabataLiveTitle">
+            <p class="song-card__eyebrow">Live Archive</p>
+            <h3 id="tanabataLiveTitle" class="song-card__title">七夕ライブ</h3>
+            <dl class="info-list">
+              <dt>日付</dt>
+              <dd>2026/7/4</dd>
+              <dt>会場</dt>
+              <dd>Seven Bridges Road</dd>
+            </dl>
+
+            <p class="song-card__eyebrow">Setlist</p>
+            <ol>
+              <li>Stop Stop Rock'n' Roll<br><small>山下久美子</small></li>
+              <li>そのスピードで<br><small>the brilliant green</small></li>
+              <li>何度でも<br><small>DREAMS COME TRUE</small></li>
+              <li>Bye My Boy<br><small>the brilliant green</small></li>
+              <li>夢見る少女じゃいられない<br><small>相川七瀬</small></li>
+            </ol>
+          </article>
+        </div>
+      </section>
     </section>
   </main>
 
