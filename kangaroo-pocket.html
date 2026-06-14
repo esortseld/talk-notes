@@ -89,6 +89,19 @@
     .live-card--archive{
       border-color:rgba(173,126,74,.26);
     }
+    .live-card__images{
+      display:grid;
+      gap:.8rem;
+      margin:.9rem 0 1rem;
+    }
+    .live-card__image{
+      width:100%;
+      display:block;
+      border-radius:14px;
+      border:1px solid rgba(70,139,210,.22);
+      box-shadow:0 10px 22px rgba(58,126,190,.12);
+      background:#fff;
+    }
     .setlist-plain{
       list-style:none;
       padding-left:0;
@@ -98,6 +111,9 @@
       padding:.55rem .7rem;
       border-radius:12px;
       background:rgba(255,255,255,.55);
+    }
+    @media (min-width:720px){
+      .live-card__images{grid-template-columns:1fr 1fr}
     }
     @media (max-width:680px){
       .live-group{padding:1rem}
@@ -151,6 +167,11 @@
               <dt>会場</dt>
               <dd>Seven Bridges Road</dd>
             </dl>
+
+            <div class="live-card__images" aria-label="七夕LIVE画像">
+              <img class="live-card__image" src="assets/img/tanabata-live-poster.svg" alt="七夕LIVE 告知画像">
+              <img class="live-card__image" src="assets/img/tanabata-live-timetable.svg" alt="七夕LIVE タイムテーブル">
+            </div>
 
             <p class="song-card__eyebrow">Setlist</p>
             <ol>
