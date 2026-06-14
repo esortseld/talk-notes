@@ -35,9 +35,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
-  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", "Hannotate SC", "Yuji Boku", cursive;
+  font-family: "Yomogi", cursive;
   font-size: clamp(2.1rem, 5vw, 3.4rem);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.05em;
   line-height: 1.1;
   text-align: center;
