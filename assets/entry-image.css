@@ -45,7 +45,8 @@
   text-shadow: 0 3px 14px rgba(0, 0, 0, 0.48);
 }
 
-.entry-card--meg-v0 {
+.entry-card--meg-v0,
+.entry-card--ringo-an {
   border: none;
 }
 
