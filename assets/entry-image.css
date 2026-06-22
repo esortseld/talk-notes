@@ -140,4 +140,10 @@
     font-size: 0.82rem;
     line-height: 1.55;
   }
+
+  .entry-card--invisible-note .entry-card--image__description {
+    max-width: 17em;
+    font-size: 0.74rem;
+    line-height: 1.5;
+  }
 }
