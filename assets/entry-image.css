@@ -45,10 +45,62 @@
   text-shadow: 0 3px 14px rgba(0, 0, 0, 0.48);
 }
 
+.entry-card--image__content {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.48);
+}
+
+.entry-card--image__content .entry-card--image__title {
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
+  width: min(100%, 520px);
+  padding: 0;
+  white-space: normal;
+}
+
+.entry-card--image__description {
+  display: block;
+  max-width: 23em;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.entry-card--image__link {
+  display: inline-block;
+  margin-top: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 5px 14px;
+}
+
+.entry-card--image__link::after {
+  content: "  →";
+}
+
 .entry-card--meg-v0,
 .entry-card--ringo-an,
 .entry-card--suyaneko,
-.entry-card--neko-gyosho {
+.entry-card--neko-gyosho,
+.entry-card--invisible-note {
   border: none;
 }
 
@@ -61,5 +113,19 @@
 
   .entry-card--image__title {
     font-size: clamp(1.8rem, 11vw, 2.8rem);
+  }
+
+  .entry-card--image__content {
+    gap: 8px;
+    padding: 18px;
+  }
+
+  .entry-card--image__content .entry-card--image__title {
+    font-size: clamp(1.7rem, 9vw, 2.35rem);
+  }
+
+  .entry-card--image__description {
+    font-size: 0.82rem;
+    line-height: 1.55;
   }
 }
