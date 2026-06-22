@@ -1,0 +1,130 @@
+.entry-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+
+.entry-card--series {
+  overflow: hidden;
+}
+
+.series-page {
+  padding: 44px 0 72px;
+}
+
+.article-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.article-card__image-link {
+  display: block;
+}
+
+.article-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.article-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.article-card__title {
+  font-size: 1.35rem;
+}
+
+.article-card__summary {
+  margin: 14px 0 0;
+  color: var(--color-muted);
+}
+
+.article-card .read-link {
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.article-page {
+  padding-bottom: 80px;
+}
+
+.article-page h1 {
+  max-width: 760px;
+  margin: 0 auto 14px;
+}
+
+.lead {
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--color-muted);
+  font-size: 1.08rem;
+}
+
+.note-image {
+  margin: 2rem auto;
+  max-width: 760px;
+  text-align: center;
+}
+
+.note-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
+}
+
+.note-series {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  color: #7a5a2f;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.article-page .note-series {
+  display: block;
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.article-page .article-body {
+  max-width: 760px;
+  margin: 2.5rem auto 0;
+  line-height: 2;
+}
+
+.article-page .article-body p {
+  margin: 0 0 1.4rem;
+}
+
+.article-page .back-link {
+  display: block;
+  max-width: 760px;
+  margin: 3rem auto 0;
+}
+
+@media (min-width: 760px) {
+  .entry-card--series {
+    grid-column: 1 / -1;
+  }
+}
