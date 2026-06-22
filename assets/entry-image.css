@@ -71,6 +71,13 @@
   white-space: normal;
 }
 
+.entry-card--invisible-note .entry-card--image__content .entry-card--image__title {
+  max-width: 100%;
+  font-size: clamp(1.45rem, 3.6vw, 2.1rem);
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
 .entry-card--image__description {
   display: block;
   max-width: 23em;
@@ -123,6 +130,10 @@
 
   .entry-card--image__content .entry-card--image__title {
     font-size: clamp(1.32rem, 6.2vw, 1.72rem);
+  }
+
+  .entry-card--invisible-note .entry-card--image__content .entry-card--image__title {
+    font-size: clamp(1.05rem, 5vw, 1.35rem);
   }
 
   .entry-card--image__description {
