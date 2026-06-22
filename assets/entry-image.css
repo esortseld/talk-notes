@@ -16,6 +16,10 @@
   object-fit: cover;
 }
 
+.entry-card--invisible-note .entry-card--image__visual {
+  object-position: center top;
+}
+
 .entry-card--image::after {
   position: absolute;
   inset: 0;
