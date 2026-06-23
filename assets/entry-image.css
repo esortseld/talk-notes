@@ -20,6 +20,10 @@
   object-position: center top;
 }
 
+.entry-card--noraneko-study .entry-card--image__visual {
+  object-position: center center;
+}
+
 .entry-card--image::after {
   position: absolute;
   inset: 0;
@@ -112,6 +116,7 @@
 .entry-card--ringo-an,
 .entry-card--suyaneko,
 .entry-card--neko-gyosho,
+.entry-card--noraneko-study,
 .entry-card--invisible-note {
   border: none;
 }
