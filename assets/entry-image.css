@@ -53,6 +53,20 @@
   text-shadow: 0 3px 14px rgba(0, 0, 0, 0.48);
 }
 
+.entry-card--suyaneko .entry-card--image__title,
+.entry-card--noraneko-study .entry-card--image__title {
+  width: min(86%, 5.8em);
+  font-size: clamp(1.85rem, 4.3vw, 2.75rem);
+  letter-spacing: 0.035em;
+  line-height: 1.18;
+  white-space: normal;
+  line-break: strict;
+}
+
+.entry-card--suyaneko .entry-card--image__title {
+  width: min(84%, 5.2em);
+}
+
 .entry-card--image__content {
   position: absolute;
   z-index: 1;
@@ -130,6 +144,17 @@
 
   .entry-card--image__title {
     font-size: clamp(1.8rem, 11vw, 2.8rem);
+  }
+
+  .entry-card--suyaneko .entry-card--image__title,
+  .entry-card--noraneko-study .entry-card--image__title {
+    width: min(88%, 5.8em);
+    font-size: clamp(1.48rem, 8.2vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .entry-card--suyaneko .entry-card--image__title {
+    width: min(86%, 5.2em);
   }
 
   .entry-card--image__content {
