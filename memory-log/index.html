@@ -19,6 +19,16 @@
     .memory-log th { white-space: nowrap; }
     .memory-log td:first-child, .memory-log td:nth-child(2), .memory-log td:nth-child(3) { white-space: nowrap; }
     .back-link { display: inline-block; margin-bottom: 24px; }
+    .thinking-section { margin-top: 44px; }
+    .thinking-section h2 { margin-bottom: 8px; }
+    .thinking-intro { color: #6b7075; margin-bottom: 20px; }
+    .comparison-wrap { overflow-x: auto; background: #fff; border-radius: 16px; }
+    .comparison-table { width: 100%; min-width: 980px; border-collapse: collapse; }
+    .comparison-table th, .comparison-table td { padding: 14px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid #d9ddd8; }
+    .comparison-table th { white-space: nowrap; }
+    .comparison-table td:nth-child(1) { width: 31%; }
+    .comparison-table td:nth-child(2) { width: 44%; }
+    .comparison-table td:nth-child(3) { width: 25%; }
   </style>
 </head>
 <body>
@@ -41,23 +51,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>2026.9.26 6:31</td>
-            <td>ITネッコ</td>
-            <td>項目別ページ生成 指示整理</td>
-            <td>
-              現行の項目別ページ生成指示を見直し。基本思想は維持しつつ、次を明文化する方向。
-              <br>① シラバス＝学習範囲の外枠、公開問題＝実際に理解すべき内容を発見する材料
-              <br>② 知識を「必須／理解をつなぐ前提・比較／今回は不要」に分ける
-              <br>③ 各問題で「何と何を区別できる必要があるか」を抽出する
-              <br>④ 推理小説風＝疑問文ではなく、情報不足を順番に解消する構造
-              <br>⑤ 一本道にできない並列概念は、上位概念から枝分かれさせる
-              <br>⑥ 公開問題の問題文・選択肢・正解は本文へ載せない
-              <br>⑦ 既存ページ更新は「修正不要／局所修正／構造修正」の3段階で判断する
-              <br>⑧ 完成度の高いページは、Chapter数や部品ではなく、説明順序・情報密度・概念導入のタイミングを参考にする
-            </td>
-            <td>2026.9.26時点の項目別ページ生成の考え方</td>
-          </tr>
-          <tr>
             <td>2026.9.25 7:41</td>
             <td>Sweet Pastime</td>
             <td>―</td>
@@ -74,6 +67,77 @@
         </tbody>
       </table>
     </div>
+
+    <section class="thinking-section">
+      <p class="section-kicker">IT Nekko</p>
+      <h2>項目別ページ生成の考え方</h2>
+      <p class="thinking-intro">2026.9.26時点。現行のプロジェクト指示と、改善後の考え方を比較して整理したもの。</p>
+
+      <div class="comparison-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>現在</th>
+              <th>改善形</th>
+              <th>改善の要点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>プロジェクト冒頭</strong>：「ITパスポート試験の公開問題を材料に、シラバス項目単位の統合学習ページを制作・更新」</td><td><strong>維持＋役割分担を追記</strong>：「シラバスは項目の学習範囲・位置付けを定める外枠、公開問題はその範囲の中で実際に理解すべき内容を発見する材料として扱う。シラバス掲載事項を機械的に網羅することを目的としない。」</td><td>シラバスと過去問の役割を明確化。シラバス用語集化を防ぐ。</td></tr>
+            <tr><td><strong>同じ項目の複数年度は一つの共通項目ページへ統合</strong></td><td><strong>そのまま維持</strong></td><td>年度横断版の根幹なので変更不要。</td></tr>
+            <tr><td><strong>既存URLに年度文字列があっても共通ページなら新年度ページを作らない</strong></td><td><strong>そのまま維持</strong></td><td>URL設計と内容設計を分離できている。</td></tr>
+            <tr><td><strong>ITネッコは過去問解説ではない</strong></td><td><strong>強化</strong>：「ITネッコは、問題そのものを掲載して解説するサイトではない。公開問題は別途参照し、ITネッコには、その問題を理解・判断できるようになるための知識構造を掲載する。」</td><td>「過去問解説ではない」の意味を具体化。</td></tr>
+            <tr><td><strong>正解、選択肢番号、消去法、各選択肢解説等を本文の中心にしない</strong></td><td><strong>置換推奨</strong>：「公開問題の問題文・選択肢・正解・選択肢ごとの解説を本文へ転載・再構成しない。問題固有の人物名、企業名、数値、設定も、学習上必要な場合を除き本文へ持ち込まない。」</td><td>「中心にしない」では掲載可能に読めるため、禁止範囲を明確化。</td></tr>
+            <tr><td><strong>推理小説風＝理解の順番</strong></td><td><strong>維持＋定義を強化</strong>：「推理小説風とは、疑問文を置くことではなく、現在の知識だけでは説明できない点を順番に解消していく構造である。」</td><td>形式だけ疑問形にするのを防ぐ。</td></tr>
+            <tr><td><strong>事実・状況を見る→説明できない点→概念導入→次の疑問</strong></td><td><strong>改善</strong>：「各段階で『ここまでで分かったこと』と『まだ説明できないこと』が生じ、その不足を次の内容で埋める。」</td><td>Chapter間の接続条件を明確化。</td></tr>
+            <tr><td><strong>内容が並列関係なら無理に時系列や因果関係を作らない</strong></td><td><strong>強化</strong>：「一本道にできない内容は一本道にしない。上位概念から複数の並列概念へ枝分かれする構造も認める。」</td><td>推理小説風＝一直線、という誤解を防ぐ。</td></tr>
+            <tr><td><strong>1. 対象問題を確認する</strong></td><td><strong>維持</strong></td><td>必須工程として適切。</td></tr>
+            <tr><td><strong>項目番号・項目名、対象年度問番号、既存ページ、反映済みかを確認</strong></td><td><strong>維持＋資料の役割を整理</strong>：「分類の基準はシラバス、実際の出題内容は公開問題、ITネッコ内の対応関係は整理基準表・既存ページで確認する。」</td><td>どの資料で何を判断するか明確化。</td></tr>
+            <tr><td><strong>前回の会話記憶だけで対象を決めない</strong></td><td><strong>そのまま維持</strong></td><td>重要。</td></tr>
+            <tr><td><strong>2. 過去問から学習材料を抽出する</strong>：場面、判断、条件、概念、共通知識、固有知識、学習要点</td><td><strong>項目追加</strong>：「その問題が成立するために、学習者が何と何を区別できる必要があるか」を追加。</td><td>単なる用語抽出ではなく、識別構造を取る。</td></tr>
+            <tr><td><strong>必要な知識・概念</strong></td><td><strong>三層化</strong>：「A 必須知識／B 理解をつなぐための前提・比較知識／C シラバスにはあるが今回の公開問題群の理解には不要な知識」に分類する。</td><td>本文に何を入れるかの判断基準を作る。</td></tr>
+            <tr><td><strong>共通する知識／問題固有の知識</strong></td><td><strong>維持</strong></td><td>年度横断統合に有効。</td></tr>
+            <tr><td><strong>既存問別ページがある場合は学習要点を勝手に変更しない</strong></td><td><strong>そのまま維持</strong></td><td>問別ページとの整合維持に必要。</td></tr>
+            <tr><td><strong>必要に応じて公開問題、シラバス、整理基準表を確認</strong></td><td><strong>改善</strong>：「公開問題＝出題事実、シラバス＝学習範囲、整理基準表＝サイト内分類、既存項目ページ＝これまで確定した学習構造、と役割を分けて参照する。」</td><td>情報源の混同を防ぐ。</td></tr>
+            <tr><td><strong>3. 学習要点を統合する</strong>：関係、上位下位、並列、因果、時点、判断情報、似た概念の違い</td><td><strong>維持＋A/B/Cを反映</strong>：「AとBを中心に統合し、Cは機械的に本文へ追加しない。」</td><td>必要以上の網羅化を防ぐ。</td></tr>
+            <tr><td><strong>この項目で理解すべき内容を確定</strong></td><td><strong>強化</strong>：「『シラバス全体を網羅したか』ではなく、『対象公開問題群を理解するための知識構造として不足がないか』で判定する。」</td><td>完成条件をITネッコの目的に寄せる。</td></tr>
+            <tr><td><strong>4. まず普通の学習書として構成する</strong></td><td><strong>そのまま維持</strong></td><td>非常に重要。</td></tr>
+            <tr><td><strong>何を先に理解、次に何、前提、並列比較を整理</strong></td><td><strong>維持＋構造タイプをここで判断</strong></td><td>構造形式の選択をこの段階に寄せると自然。</td></tr>
+            <tr><td><strong>5. 推理小説構成へ変換する</strong></td><td><strong>改善</strong>：「各Chapterの入口は、前章までの知識で説明できない点が存在する場合に限る。単に別用語を紹介するためのChapter分割をしない。」</td><td>独立用語集化を防止。</td></tr>
+            <tr><td><strong>各Chapterは前章の未解決点を次章で受け取る</strong></td><td><strong>修正</strong>：「原則として前章の未解決点を受け取る。ただし並列構造では、共通の上位概念から枝分かれさせてもよい。」</td><td>並列概念に無理な因果を作らない。</td></tr>
+            <tr><td><strong>6. 文章化</strong>：用語定義から始めない、結論を見せすぎない等</td><td><strong>ほぼ維持</strong></td><td>良いルール。</td></tr>
+            <tr><td><strong>普通の学習書の説明口調に戻りすぎない</strong></td><td><strong>具体化</strong>：「定義→例→次の定義、という独立用語解説の連続にしない。」</td><td>判定しやすくする。</td></tr>
+            <tr><td><strong>「そのうえで」「次に」「まず」など時系列誤読に注意</strong></td><td><strong>そのまま維持</strong></td><td>これまで実際に問題になっているため重要。</td></tr>
+            <tr><td><strong>7. 通読確認</strong></td><td><strong>強化して二段階化</strong>：「内容確認」と「読者導線確認」に分ける。</td><td>品質評価を明確化。</td></tr>
+            <tr><td><strong>Chapter間に進む理由があるか</strong></td><td><strong>維持</strong></td><td>最重要項目。</td></tr>
+            <tr><td><strong>用語別独立解説になっていないか</strong></td><td><strong>維持</strong></td><td>必須。</td></tr>
+            <tr><td><strong>未説明概念を突然使っていないか</strong></td><td><strong>維持</strong></td><td>必須。</td></tr>
+            <tr><td><strong>意図しない別の疑問を生んでいないか</strong></td><td><strong>維持</strong></td><td>ITネッコらしさに直結。</td></tr>
+            <tr><td><strong>最後まで一つの話として読めるか</strong></td><td><strong>追加判定</strong>：「読者が『なぜ今この説明を読んでいるのか』分からなくなる箇所がないか」を追加。</td><td>接続性を判定できる。</td></tr>
+            <tr><td><strong>既存ページへの新年度統合：「リンク済み＝完成済み」としない</strong></td><td><strong>そのまま維持</strong></td><td>良い。</td></tr>
+            <tr><td><strong>既存内容で十分なら重複追加せず軽微修正＋参照問題追加</strong></td><td><strong>三段階判定へ改善</strong>：「①本文修正不要 ②局所修正 ③構造修正」のどれかを判定してから編集する。</td><td>全面改稿を防止。</td></tr>
+            <tr><td><strong>新しい学習要点がある場合は自然な位置へ統合</strong></td><td><strong>維持</strong></td><td>適切。</td></tr>
+            <tr><td><strong>既存構造では不自然なら全体構造を再整理してよい</strong></td><td><strong>条件追加</strong>：「③構造修正を行う場合は、局所修正ではなぜ学習順序が成立しないかを確認してから行う。」</td><td>安易な全面書換えを抑制。</td></tr>
+            <tr><td><strong>単なる年度追加を理由に全面改稿しない</strong></td><td><strong>そのまま維持</strong></td><td>必須。</td></tr>
+            <tr><td><strong>構造形式：流れ型、場面地図型、関係・構造型、その他</strong></td><td><strong>維持＋補足</strong>：「一本道・枝分かれ・比較・循環など、内容の関係性に応じて選ぶ。」</td><td>実際の知識構造に合わせやすい。</td></tr>
+            <tr><td><strong>全項目を同じChapter数等へ強制しない</strong></td><td><strong>そのまま維持</strong></td><td>重要。</td></tr>
+            <tr><td><strong>文量・レイアウト：長い導入、SEO、言い換え等を増やさない</strong></td><td><strong>そのまま維持</strong></td><td>問題なし。</td></tr>
+            <tr><td><strong>既存完成ページを複数確認しサイト共通デザインに合わせる</strong></td><td><strong>改善</strong>：「完成度の高いページは、デザインだけでなく『説明順序・情報密度・概念導入のタイミング』の参考とする。ただしChapter数、構成部品、文量、具体例を模倣しない。」</td><td>良いページをテンプレ化してしまう事故を防ぐ。</td></tr>
+            <tr><td><strong>学習地図、比較カード等は必要な場合だけ使う</strong></td><td><strong>そのまま維持</strong></td><td>良い。</td></tr>
+            <tr><td><strong>冒頭で答えや全構造を全部見せない</strong></td><td><strong>そのまま維持</strong></td><td>推理小説構成と整合。</td></tr>
+            <tr><td><strong>参照した公開問題：年度ごと、古い→新しい</strong></td><td><strong>そのまま維持</strong></td><td>問題なし。</td></tr>
+            <tr><td><strong>適切な問別ページがあれば内部リンク、なければIPA公式</strong></td><td><strong>そのまま維持</strong></td><td>安全。</td></tr>
+            <tr><td><strong>GitHub実装：書込み直前にmain最新ファイルとSHA取得</strong></td><td><strong>そのまま維持</strong></td><td>技術的に重要。</td></tr>
+            <tr><td><strong>既存共通項目ページがあれば更新、新年度ページを作らない</strong></td><td><strong>そのまま維持</strong></td><td>根幹。</td></tr>
+            <tr><td><strong>新規URLの命名規則を判断できなければ保留</strong></td><td><strong>そのまま維持</strong></td><td>良い。</td></tr>
+            <tr><td><strong>エラー時：推測で進めず保留</strong></td><td><strong>維持＋資料矛盾ルールを追加</strong>：「公開問題・シラバス・整理基準表・既存ページの記述が食い違う場合は、それぞれの役割を確認し、事実関係とサイト内分類を分けて判断する。解消できなければ保留。」</td><td>役割差で説明できる不一致まで即停止しない。</td></tr>
+            <tr><td><strong>完了条件：対象問題確認→統合→構造化→推理小説化→通読→実装</strong></td><td><strong>改善</strong>：「A/B/C判定」「修正レベル判定」「読者導線確認」を追加。</td><td>品質工程を完成条件に組み込む。</td></tr>
+            <tr><td><strong>禁止事項：年度複製、推測、テンプレ強制、不自然な時系列等</strong></td><td><strong>追加</strong>：「シラバス掲載用語を網羅目的で追加する」「問題文・選択肢・正解を転載・再構成する」「完成ページのChapter構成をテンプレートとして流用する」を追加。</td><td>今回の改善点を禁止事項でも担保。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </main>
 </body>
 </html>
